@@ -1,4 +1,5 @@
 "use client";
+import { SignInButton, UserButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import { ClassNames } from "@emotion/react";
 import { li } from "framer-motion/client";
 import Link from "next/link";
@@ -10,6 +11,7 @@ const Header = () => {
     { link: "/", name: "Home" },
     { link: "/about", name: "About" },
     { link: "/products/nigs", name: "nigs" },
+    { link: "/mock-users", name: "users" },
   ];
   return (
     <nav className="flex justify-center  p-8 w-screen">
@@ -24,6 +26,14 @@ const Header = () => {
             </Link>
           </li>
         ))}
+        <li>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          <SignedOut>
+            <SignInButton mode="modal" />
+          </SignedOut>
+        </li>
       </ul>
     </nav>
   );

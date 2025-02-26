@@ -1,12 +1,23 @@
 export const users = [
-    {id:1, name:'dong'},
-    {id:2, name:'ding'}
-]
+  { id: 1, name: "dong" },
+  { id: 2, name: "ding" },
+];
 
 export async function GET() {
-    return Response.json(users);
+  return Response.json(users);
 }
 
-export async function POST() {
-
+export async function POST(request: Request) {
+  const user = await request.json();
+  const newUser = {
+    id: user.length + 1,
+    name: user.name,
+  };
+  users.push(newUser);
+  return new Response(JSON.stringify(newUser), {
+    headers: {
+      "Content-Type": "application.json",
+    },
+    status: 201,
+  });
 }
